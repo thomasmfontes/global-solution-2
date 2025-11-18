@@ -1,23 +1,33 @@
+import user1 from "../assets/user1.jpg";
+import user2 from "../assets/user2.jpg";
+import user3 from "../assets/user3.jpg";
+
 interface Integrante {
   nome: string;
   rm: string;
   github?: string;
+  foto?: string;
 }
 
 export default function IntegrantesPage() {
   const integrantes: Integrante[] = [
     {
-      nome: "Thomas Fontes",
-      rm: "RM562254",
-      github: "thomasmfontes",
-    },
-    {
       nome: "Gabriel Maciel",
-      rm: "RM234567",
+      rm: "RM562795",
+      github: "Gabriel-Maciel06",
+      foto: user1,
     },
     {
       nome: "Matheus Molina",
-      rm: "RM345678",
+      rm: "RM563399",
+      github: "matheus-molina",
+      foto: user2,
+    },
+    {
+      nome: "Thomas Fontes",
+      rm: "RM562254",
+      github: "thomasmfontes",
+      foto: user3,
     },
   ];
 
@@ -40,11 +50,19 @@ export default function IntegrantesPage() {
             >
               <div className="flex flex-col items-center text-center">
                 {/* Avatar */}
-                <div className="w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-3xl font-bold text-white">
-                    {integrante.nome.charAt(0)}
-                  </span>
-                </div>
+                {integrante.foto ? (
+                  <img
+                    src={integrante.foto}
+                    alt={`Foto de ${integrante.nome}`}
+                    className="w-24 h-24 rounded-full object-cover border-2 border-primary-500 mb-4"
+                  />
+                ) : (
+                  <div className="w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-3xl font-bold text-white">
+                      {integrante.nome.charAt(0)}
+                    </span>
+                  </div>
+                )}
 
                 {/* Nome */}
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">

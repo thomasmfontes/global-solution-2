@@ -9,14 +9,18 @@ export default function Header() {
   return (
     <header className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Menu principal">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <Link 
             to="/" 
-            className="text-2xl font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 rounded"
+            className="inline-flex items-center focus:outline-none focus:ring-2 focus:ring-primary-500 rounded"
             aria-label="FUTURIZE - Ir para página inicial"
           >
-            FUTURIZE
+            <img
+              src="/logo.png"
+              alt="FUTURIZE"
+              className="h-12 md:h-16 w-auto"
+            />
           </Link>
 
           {/* Menu Desktop */}
