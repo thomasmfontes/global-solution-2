@@ -6,7 +6,10 @@ import { usuarioService } from "../services/usuarioService";
 import type { Usuario } from "../services/usuarioService";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
-import CardCurso from "../components/CardCurso";
+import CursoForm from "../components/dashboard/CursoForm";
+import CursoList from "../components/dashboard/CursoList";
+import UsuarioForm from "../components/dashboard/UsuarioForm";
+import UsuarioList from "../components/dashboard/UsuarioList";
 
 export default function DashboardPage() {
   const [cursos, setCursos] = useState<Curso[]>([]);
@@ -204,130 +207,17 @@ export default function DashboardPage() {
 
                 {/* Formulário de Criar Curso */}
                 {showCursoForm && (
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                    <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-                      Criar Novo Curso
-                    </h3>
-                    <form onSubmit={handleCriarCurso} className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="nome-curso" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Nome do Curso *
-                          </label>
-                          <input
-                            type="text"
-                            id="nome-curso"
-                            value={novoCurso.nome}
-                            onChange={(e) => setNovoCurso({ ...novoCurso, nome: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="duracao-curso" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Duração (horas) *
-                          </label>
-                          <input
-                            type="number"
-                            id="duracao-curso"
-                            min="1"
-                            value={novoCurso.duracao || ""}
-                            onChange={(e) => setNovoCurso({ ...novoCurso, duracao: parseInt(e.target.value) || 0 })}
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label htmlFor="descricao-curso" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                          Descrição *
-                        </label>
-                        <textarea
-                          id="descricao-curso"
-                          value={novoCurso.descricao}
-                          onChange={(e) => setNovoCurso({ ...novoCurso, descricao: e.target.value })}
-                          rows={3}
-                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
-                          required
-                        />
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
-                          <label htmlFor="nivel-curso" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Nível
-                          </label>
-                          <select
-                            id="nivel-curso"
-                            value={novoCurso.nivel}
-                            onChange={(e) => setNovoCurso({ ...novoCurso, nivel: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                          >
-                            <option>Iniciante</option>
-                            <option>Intermediário</option>
-                            <option>Avançado</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label htmlFor="categoria-curso" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Categoria
-                          </label>
-                          <input
-                            type="text"
-                            id="categoria-curso"
-                            value={novoCurso.categoria}
-                            onChange={(e) => setNovoCurso({ ...novoCurso, categoria: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="plataforma-curso" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Plataforma
-                          </label>
-                          <input
-                            type="text"
-                            id="plataforma-curso"
-                            value={novoCurso.plataforma}
-                            onChange={(e) => setNovoCurso({ ...novoCurso, plataforma: e.target.value })}
-                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label htmlFor="link-curso" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                          Link do Curso
-                        </label>
-                        <input
-                          type="url"
-                          id="link-curso"
-                          value={novoCurso.link}
-                          onChange={(e) => setNovoCurso({ ...novoCurso, link: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                          placeholder="https://"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        disabled={criandoCurso}
-                        className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                      >
-                        {criandoCurso ? "Criando..." : "Criar Curso"}
-                      </button>
-                    </form>
-                  </div>
+                  <CursoForm
+                    novoCurso={novoCurso}
+                    setNovoCurso={setNovoCurso}
+                    onSubmit={handleCriarCurso}
+                    criando={criandoCurso}
+                    onCancel={() => setShowCursoForm(false)}
+                  />
                 )}
 
                 {/* Lista de Cursos */}
-                {cursos.length === 0 ? (
-                  <div className="text-center py-12 text-gray-500 dark:text-gray-400">
-                    <p>Nenhum curso encontrado. Crie o primeiro!</p>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {cursos.map((curso) => (
-                      <CardCurso key={curso.id} curso={curso} />
-                    ))}
-                  </div>
-                )}
+                <CursoList cursos={cursos} />
               </div>
             )}
 
@@ -349,109 +239,17 @@ export default function DashboardPage() {
 
                 {/* Formulário de Criar Usuário */}
                 {showUsuarioForm && (
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8 border border-gray-200 dark:border-gray-700">
-                    <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-                      Criar Novo Usuário
-                    </h3>
-                    <form onSubmit={handleCriarUsuario} className="space-y-4">
-                      <div>
-                        <label htmlFor="nome-usuario" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                          Nome Completo *
-                        </label>
-                        <input
-                          type="text"
-                          id="nome-usuario"
-                          value={novoUsuario.nome}
-                          onChange={(e) => setNovoUsuario({ ...novoUsuario, nome: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email-usuario" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                          E-mail *
-                        </label>
-                        <input
-                          type="email"
-                          id="email-usuario"
-                          value={novoUsuario.email}
-                          onChange={(e) => setNovoUsuario({ ...novoUsuario, email: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="senha-usuario" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                          Senha *
-                        </label>
-                        <input
-                          type="password"
-                          id="senha-usuario"
-                          value={novoUsuario.senha}
-                          onChange={(e) => setNovoUsuario({ ...novoUsuario, senha: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                          minLength={6}
-                          required
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        disabled={criandoUsuario}
-                        className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                      >
-                        {criandoUsuario ? "Criando..." : "Criar Usuário"}
-                      </button>
-                    </form>
-                  </div>
+                  <UsuarioForm
+                    novoUsuario={novoUsuario}
+                    setNovoUsuario={setNovoUsuario}
+                    onSubmit={handleCriarUsuario}
+                    criando={criandoUsuario}
+                    onCancel={() => setShowUsuarioForm(false)}
+                  />
                 )}
 
                 {/* Lista de Usuários */}
-                {usuarios.length === 0 ? (
-                  <div className="text-center py-12 text-gray-500 dark:text-gray-400">
-                    <p>Nenhum usuário encontrado. Crie o primeiro!</p>
-                  </div>
-                ) : (
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead className="bg-gray-50 dark:bg-gray-900">
-                          <tr>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                              ID
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                              Nome
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                              E-mail
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                              Data Cadastro
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                          {usuarios.map((usuario) => (
-                            <tr key={usuario.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                {usuario.id}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                {usuario.nome}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
-                                {usuario.email}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                {usuario.dataCadastro ? new Date(usuario.dataCadastro).toLocaleDateString('pt-BR') : '—'}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                )}
+                <UsuarioList usuarios={usuarios} />
               </div>
             )}
           </>
