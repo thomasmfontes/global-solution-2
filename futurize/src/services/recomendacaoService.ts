@@ -3,10 +3,11 @@ import type { Curso } from "./cursoService";
 
 export interface Recomendacao {
   id?: number;
-  usuarioId: number;
-  cursoId: number;
-  relevancia?: number;
-  dataRecomendacao?: string;
+  usuarioId: number; // id_usuario
+  cursoId: number; // id_curso
+  dataRecomendacao?: string; // dt_recomendacao
+  prioridade?: number; // nu_prioridade (1-5)
+  motivo?: string; // ds_motivo
 }
 
 export const recomendacaoService = {

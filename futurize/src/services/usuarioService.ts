@@ -4,8 +4,8 @@ export interface Usuario {
   id?: number;
   nome: string;
   email: string;
-  senha?: string;
   dataCadastro?: string;
+  ativo?: boolean; // st_ativo convertido de 'S'/'N' para boolean
 }
 
 export const usuarioService = {
@@ -31,7 +31,16 @@ export const usuarioService = {
 
   async criar(usuario: Usuario): Promise<Usuario> {
     try {
-      const response = await api.post<Usuario>("/usuarios", usuario);
+      // A API Java Oracle pode esperar 'S'/'N' para o campo ativo (CHAR(1))
+      const payload = {
+        nome: usuario.nome,
+        email: usuario.email,
+        ativo: 'S' // Envia 'S' para ativo ao invés de boolean
+      };
+      
+      console.log('Payload enviado para criar usuário:', payload);
+      
+      const response = await api.post<Usuario>("/usuarios", payload);
       return response.data;
     } catch (error) {
       console.error("Erro ao criar usuário:", error);

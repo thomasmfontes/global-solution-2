@@ -3,9 +3,8 @@ import { api } from "./api";
 export interface Habilidade {
   id?: number;
   nome: string;
-  descricao: string;
-  categoria?: string;
-  nivelImportancia?: string;
+  categoria: string; // ds_categoria
+  nivel: 'Iniciante' | 'Intermediario' | 'Avancado'; // ds_nivel
 }
 
 export const habilidadeService = {

@@ -1,10 +1,9 @@
+import { PageContainer, PageHeader } from '../components';
+
 export default function SobrePage() {
   return (
-    <div className="py-12 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-          Sobre o FUTURIZE
-        </h1>
+    <PageContainer maxWidth="4xl">
+      <PageHeader title="Sobre o FUTURIZE" align="center" />
 
         {/* Problema */}
         <section className="mb-12">
@@ -33,19 +32,20 @@ export default function SobrePage() {
               Nossa Solução
             </h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-              O <strong className="text-primary-600 dark:text-primary-400">FUTURIZE</strong> é uma plataforma inteligente 
-              que utiliza algoritmos de Inteligência Artificial para analisar o perfil, habilidades e objetivos de cada usuário.
+              O <strong className="text-primary-600 dark:text-primary-400">FUTURIZE</strong> é uma plataforma completa de desenvolvimento profissional 
+              que combina gestão de habilidades, recomendações inteligentes de cursos e conexão com oportunidades de emprego.
             </p>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-              Com base nessa análise, fornecemos recomendações personalizadas de cursos que realmente fazem sentido para 
-              sua trajetória profissional. Conectamos você às melhores plataformas de ensino e aos cursos mais relevantes 
-              para as profissões do futuro.
+              Você cadastra suas habilidades e define níveis de proficiência. Nossa IA analisa seu perfil completo e recomenda 
+              cursos personalizados para preencher lacunas de conhecimento. Além disso, conectamos você com vagas de emprego 
+              compatíveis com suas competências atuais.
             </p>
             <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2 ml-4">
-              <li>Recomendações baseadas em IA e análise de dados</li>
-              <li>Cursos alinhados com as tendências do mercado</li>
-              <li>Economia de tempo e recursos na escolha de cursos</li>
-              <li>Acompanhamento do progresso e evolução de habilidades</li>
+              <li>Gestão completa de habilidades com níveis de proficiência</li>
+              <li>Recomendações personalizadas de cursos baseadas em IA</li>
+              <li>Vagas de emprego rankeadas por compatibilidade com seu perfil</li>
+              <li>Dashboard para gerenciar cursos e usuários</li>
+              <li>Acompanhamento da evolução profissional em tempo real</li>
             </ul>
           </div>
         </section>
@@ -110,11 +110,12 @@ export default function SobrePage() {
               Nossa plataforma utiliza algoritmos avançados de Machine Learning para:
             </p>
             <ul className="list-disc list-inside text-gray-700 dark:text-gray-200 space-y-2 ml-4">
-              <li>Analisar perfis de usuários e identificar lacunas de conhecimento</li>
-              <li>Prever tendências do mercado de trabalho</li>
-              <li>Mapear habilidades mais demandadas por setor e região</li>
-              <li>Recomendar trilhas de aprendizado personalizadas</li>
-              <li>Otimizar a compatibilidade entre perfis profissionais e cursos disponíveis</li>
+              <li>Analisar seu perfil de habilidades e identificar gaps de conhecimento</li>
+              <li>Calcular compatibilidade entre suas competências e cursos disponíveis</li>
+              <li>Rankear vagas de emprego por nível de match com seu perfil</li>
+              <li>Sugerir cursos que complementam suas habilidades existentes</li>
+              <li>Recomendar trilhas de desenvolvimento profissional personalizadas</li>
+              <li>Priorizar oportunidades com base em seus objetivos de carreira</li>
             </ul>
             <p className="text-gray-700 dark:text-gray-200 leading-relaxed mt-4">
               Tudo isso para garantir que você invista seu tempo nas competências que realmente farão diferença 
@@ -122,7 +123,6 @@ export default function SobrePage() {
             </p>
           </div>
         </section>
-      </div>
-    </div>
+    </PageContainer>
   );
 }

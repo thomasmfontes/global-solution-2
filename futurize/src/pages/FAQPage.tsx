@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FAQItem from "../components/faq/FAQItem";
 import ContactForm from "../components/faq/ContactForm";
+import { PageContainer, PageHeader } from '../components';
 
 interface FAQData {
   pergunta: string;
@@ -13,39 +14,45 @@ export default function FAQPage() {
   const faqs: FAQData[] = [
     {
       pergunta: "O que é o FUTURIZE?",
-      resposta: "O FUTURIZE é uma plataforma de recomendação de cursos baseada em Inteligência Artificial. Analisamos seu perfil, objetivos e habilidades para sugerir os melhores cursos que vão impulsionar sua carreira.",
+      resposta: "O FUTURIZE é uma plataforma completa de desenvolvimento profissional que combina gestão de habilidades, recomendações inteligentes de cursos e conexão com vagas de emprego. Cadastre suas habilidades, receba recomendações personalizadas e encontre oportunidades alinhadas ao seu perfil.",
     },
     {
-      pergunta: "Como funciona a recomendação de cursos?",
-      resposta: "Utilizamos algoritmos de Machine Learning que analisam seu histórico, preferências, habilidades atuais e objetivos profissionais. Com base nesses dados, cruzamos informações com tendências de mercado e sugerimos cursos personalizados para você.",
+      pergunta: "Como funciona o sistema de habilidades?",
+      resposta: "No seu perfil, você pode adicionar habilidades e definir o nível de proficiência (0-100%) para cada uma. Nossa IA analisa essas informações para recomendar cursos que preencham lacunas de conhecimento e vagas compatíveis com suas competências.",
     },
     {
-      pergunta: "Os cursos são gratuitos?",
-      resposta: "O FUTURIZE é uma plataforma de recomendação. Indicamos cursos de diversas plataformas parceiras, que podem ser gratuitos ou pagos. Sempre mostramos todas as informações sobre preço, duração e certificação de cada curso.",
+      pergunta: "Como são feitas as recomendações de cursos?",
+      resposta: "Utilizamos algoritmos de Machine Learning que analisam suas habilidades cadastradas, níveis de proficiência e objetivos. Com base nisso, recomendamos cursos com alta compatibilidade, priorizando aqueles que complementam suas competências existentes.",
+    },
+    {
+      pergunta: "Como funciona a seção de Empregabilidade?",
+      resposta: "A página de Empregabilidade mostra vagas de emprego rankeadas por compatibilidade com seu perfil. Quanto mais alinhadas suas habilidades estiverem com os requisitos da vaga, maior será o percentual de compatibilidade exibido.",
     },
     {
       pergunta: "Preciso pagar para usar o FUTURIZE?",
-      resposta: "Não! O acesso à plataforma FUTURIZE é completamente gratuito. Você pode criar sua conta, receber recomendações personalizadas e explorar cursos sem nenhum custo.",
+      resposta: "Não! A plataforma FUTURIZE é completamente gratuita. Você pode criar sua conta, gerenciar habilidades, receber recomendações personalizadas de cursos e explorar vagas de emprego sem nenhum custo.",
     },
     {
-      pergunta: "Como a plataforma garante a qualidade dos cursos?",
-      resposta: "Trabalhamos apenas com plataformas de ensino reconhecidas e avaliamos constantemente a satisfação dos usuários. Nosso algoritmo considera avaliações, taxa de conclusão e feedback da comunidade para recomendar apenas cursos de alta qualidade.",
+      pergunta: "O que posso fazer no Dashboard?",
+      resposta: "O Dashboard permite que administradores gerenciem cursos e usuários da plataforma. Você pode criar, visualizar e organizar o catálogo de cursos disponíveis, além de gerenciar a base de usuários do sistema.",
     },
     {
-      pergunta: "Posso acompanhar meu progresso?",
-      resposta: "Sim! No Dashboard você pode acompanhar os cursos que já concluiu, ver suas habilidades desenvolvidas e receber novas recomendações baseadas na sua evolução profissional.",
+      pergunta: "Como atualizo minhas habilidades?",
+      resposta: "Acesse a página 'Meu Perfil' para adicionar novas habilidades ou ajustar os níveis de proficiência das existentes. Use o slider para definir seu nível (Iniciante 0-25%, Básico 26-50%, Intermediário 51-75%, Avançado 76-100%).",
+    },
+    {
+      pergunta: "As recomendações são atualizadas automaticamente?",
+      resposta: "Sim! Sempre que você atualiza suas habilidades ou níveis de proficiência, nossas recomendações de cursos e compatibilidade com vagas são recalculadas para refletir seu perfil atual.",
     },
   ];
 
   return (
-    <div className="py-12 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900 dark:text-white">
-          Perguntas Frequentes
-        </h1>
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
-          Tire suas dúvidas sobre o FUTURIZE
-        </p>
+    <PageContainer maxWidth="4xl">
+      <PageHeader
+        title="Perguntas Frequentes"
+        subtitle="Tire suas dúvidas sobre o FUTURIZE"
+        align="center"
+      />
 
         {/* FAQ Items */}
         <section className="mb-16">
@@ -65,7 +72,6 @@ export default function FAQPage() {
 
         {/* Formulário de Contato */}
         <ContactForm />
-      </div>
-    </div>
+    </PageContainer>
   );
 }

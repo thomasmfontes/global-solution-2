@@ -3,12 +3,9 @@ import { api } from "./api";
 export interface Curso {
   id?: number;
   nome: string;
-  descricao: string;
-  duracao: number;
-  nivel: string;
-  categoria?: string;
-  plataforma?: string;
-  link?: string;
+  categoria: string;
+  cargaHoraria: number; // qt_carga_horaria
+  nivel: 'Iniciante' | 'Intermediario' | 'Avancado'; // ds_nivel
 }
 
 export const cursoService = {
